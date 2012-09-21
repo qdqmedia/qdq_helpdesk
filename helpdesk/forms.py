@@ -25,7 +25,7 @@ class EditTicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         exclude = ('created', 'modified', 'status', 'on_hold', 'resolution', 'last_escalation', 'assigned_to')
-    
+
     def __init__(self, *args, **kwargs):
         """
         Add any custom fields that are defined to the form
@@ -79,12 +79,10 @@ class EditTicketForm(forms.ModelForm):
                 fieldclass = forms.IPAddressField
             elif field.data_type == 'slug':
                 fieldclass = forms.SlugField
-            
             self.fields['custom_%s' % field.name] = fieldclass(**instanceargs)
 
 
     def save(self, *args, **kwargs):
-        
         for field, value in self.cleaned_data.items():
             if field.startswith('custom_'):
                 field_name = field.replace('custom_', '')
@@ -95,7 +93,6 @@ class EditTicketForm(forms.ModelForm):
                     cfv = TicketCustomFieldValue(ticket=self.instance, field=customfield)
                 cfv.value = value
                 cfv.save()
-        
         return super(EditTicketForm, self).save(*args, **kwargs)
 
 
@@ -230,7 +227,6 @@ class TicketForm(forms.Form):
                 fieldclass = forms.IPAddressField
             elif field.data_type == 'slug':
                 fieldclass = forms.SlugField
-            
             self.fields['custom_%s' % field.name] = fieldclass(**instanceargs)
 
 
@@ -238,7 +234,6 @@ class TicketForm(forms.Form):
         """
         Writes and returns a Ticket() object
         """
-
         q = Queue.objects.get(id=int(self.cleaned_data['queue']))
 
         t = Ticket( title = self.cleaned_data['title'],
@@ -261,7 +256,7 @@ class TicketForm(forms.Form):
             except User.DoesNotExist:
                 t.assigned_to = None
         t.save()
-        
+
         for field, value in self.cleaned_data.items():
             if field.startswith('custom_'):
                 field_name = field.replace('custom_', '')
@@ -284,7 +279,7 @@ class TicketForm(forms.Form):
             }
 
         f.save()
-        
+
         files = []
         if self.cleaned_data['attachment']:
             import mimetypes
@@ -298,15 +293,15 @@ class TicketForm(forms.Form):
                 )
             a.file.save(file.name, file, save=False)
             a.save()
-            
+
             if file.size < getattr(settings, 'MAX_EMAIL_ATTACHMENT_SIZE', 512000):
-                # Only files smaller than 512kb (or as defined in 
+                # Only files smaller than 512kb (or as defined in
                 # settings.MAX_EMAIL_ATTACHMENT_SIZE) are sent via email.
                 files.append(a.file.path)
 
         context = safe_template_context(t)
         context['comment'] = f.comment
-        
+
         messages_sent_to = []
 
         if t.submitter_email:
@@ -449,14 +444,12 @@ class PublicTicketForm(forms.Form):
                 fieldclass = forms.IPAddressField
             elif field.data_type == 'slug':
                 fieldclass = forms.SlugField
-            
             self.fields['custom_%s' % field.name] = fieldclass(**instanceargs)
 
     def save(self):
         """
         Writes and returns a Ticket() object
         """
-
         q = Queue.objects.get(id=int(self.cleaned_data['queue']))
 
         t = Ticket(
@@ -504,7 +497,7 @@ class PublicTicketForm(forms.Form):
                 )
             a.file.save(file.name, file, save=False)
             a.save()
-            
+
             if file.size < getattr(settings, 'MAX_EMAIL_ATTACHMENT_SIZE', 512000):
                 # Only files smaller than 512kb (or as defined in 
                 # settings.MAX_EMAIL_ATTACHMENT_SIZE) are sent via email.
@@ -598,7 +591,7 @@ class TicketCCForm(forms.ModelForm):
             users = User.objects.filter(is_active=True, is_staff=True).order_by('username')
         else:
             users = User.objects.filter(is_active=True).order_by('username')
-        self.fields['user'].queryset = users 
+        self.fields['user'].queryset = users
     class Meta:
         model = TicketCC
         exclude = ('ticket',)
