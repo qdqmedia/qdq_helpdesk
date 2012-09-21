@@ -1,0 +1,4 @@
+{% load i18n %}
+{% if helpdesk_settings.HELPDESK_SUPPORT_PERSON %}
+<p>{% trans "For technical support please contact:" %} <a href='mailto:{{ helpdesk_settings.HELPDESK_SUPPORT_PERSON }}'>{{ helpdesk_settings.HELPDESK_SUPPORT_PERSON }}</a></p>
+{% endif %}
