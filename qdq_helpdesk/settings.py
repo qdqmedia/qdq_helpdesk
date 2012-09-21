@@ -23,7 +23,7 @@ DATABASES = {
 
 TIME_ZONE = 'Europe/Madrid'
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 SITE_ID = 1
 
