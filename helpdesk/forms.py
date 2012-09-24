@@ -150,11 +150,7 @@ class TicketForm(forms.Form):
             'as \'3\'.'),
         )
 
-    due_date = forms.DateTimeField(
-        widget=extras.SelectDateWidget,
-        required=False,
-        label=_('Due on'),
-        )
+    due_date = forms.DateField(required=False, label=_('Due on'))
 
     def clean_due_date(self):
         data = self.cleaned_data['due_date']
@@ -386,11 +382,7 @@ class PublicTicketForm(forms.Form):
         help_text=_('Please select a priority carefully.'),
         )
 
-    due_date = forms.DateTimeField(
-        widget=extras.SelectDateWidget,
-        required=False,
-        label=_('Due on'),
-        )
+    due_date = forms.DateField(required=False, label=_('Due on'))
 
     attachment = forms.FileField(
         required=False,

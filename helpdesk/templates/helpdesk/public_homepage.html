@@ -54,7 +54,7 @@
             {% endif %}
         {% endfor %}
     </dl>
-    
+
     <div class='buttons'>
         <input type='submit' value='{% trans "Submit Ticket" %}' />
     </div>
@@ -66,5 +66,12 @@
 {% if not helpdesk_settings.HELPDESK_VIEW_A_TICKET_PUBLIC and not helpdesk_settings.HELPDESK_SUBMIT_A_TICKET_PUBLIC %}
         <h2>{% trans "Please use button at upper right to login first." %}</h2>
 {% endif %}
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#id_body").cleditor();
+    $("#id_due_date").datepicker($.datepicker.regional['es']);
+});
+</script>
+
 
 {% endblock %}
