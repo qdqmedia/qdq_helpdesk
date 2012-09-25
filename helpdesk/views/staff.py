@@ -64,7 +64,7 @@ def dashboard(request):
 
     # closed & resolved tickets, assigned to current user
     tickets_closed_resolved =  Ticket.objects.filter(
-            assigned_to=request.user, 
+            assigned_to=request.user,
             status__in = [Ticket.CLOSED_STATUS, Ticket.RESOLVED_STATUS])
 
     unassigned_tickets = Ticket.objects.filter(
@@ -115,12 +115,11 @@ def dashboard(request):
                         COUNT(CASE t.status WHEN '4' THEN t.id END) AS closed
                 FROM    helpdesk_queue q
                 LEFT OUTER JOIN helpdesk_ticket t
-                ON      q.id = t.queue_id            
+                ON      q.id = t.queue_id
                 GROUP BY queue, name
                 ORDER BY q.id;
-        """)    
-    
-    
+        """)
+
     dash_tickets = query_to_dict(cursor.fetchall(), cursor.description)
 
     return render_to_response('helpdesk/dashboard.html',
@@ -274,7 +273,7 @@ view_ticket = staff_member_required(view_ticket)
 
 def return_ticketccstring_and_show_subscribe(user, ticket):
     ''' used in view_ticket() and followup_edit()'''
-    # create the ticketcc_string and check whether current user is already 
+    # create the ticketcc_string and check whether current user is already
     # subscribed
     username = user.username.upper()
     useremail = user.email.upper()
@@ -474,7 +473,7 @@ def update_ticket(request, ticket_id, public=False):
 
     messages_sent_to = []
 
-    # ticket might have changed above, so we re-instantiate context with the 
+    # ticket might have changed above, so we re-instantiate context with the
     # (possibly) updated ticket.
     context = safe_template_context(ticket)
     context.update(
@@ -732,7 +731,7 @@ def ticket_list(request):
             or  request.GET.has_key('status')
             or  request.GET.has_key('q')
             or  request.GET.has_key('sort')
-            or  request.GET.has_key('sortreverse') 
+            or  request.GET.has_key('sortreverse')
             or  request.GET.has_key('tags') ):
 
         # Fall-back if no querying is being done, force the list to only
@@ -771,7 +770,7 @@ def ticket_list(request):
         date_from = request.GET.get('date_from')
         if date_from:
             query_params['filtering']['created__gte'] = date_from
-        
+
         date_to = request.GET.get('date_to')
         if date_to:
             query_params['filtering']['created__lte'] = date_to
@@ -841,7 +840,7 @@ def ticket_list(request):
     querydict = request.GET.copy()
     querydict.pop('page', 1)
 
-    tag_choices = [] 
+    tag_choices = []
     if HAS_TAG_SUPPORT:
         # FIXME: restrict this to tags that are actually in use
         tag_choices = Tag.objects.all()
@@ -875,7 +874,7 @@ def edit_ticket(request, ticket_id):
             return HttpResponseRedirect(ticket.get_absolute_url())
     else:
         form = EditTicketForm(instance=ticket)
-    
+
     return render_to_response('helpdesk/edit_ticket.html',
         RequestContext(request, {
             'form': form,
@@ -989,7 +988,7 @@ def run_report(request, report):
         return HttpResponseRedirect(reverse("helpdesk_report_index"))
 
     report_queryset = Ticket.objects.all().select_related()
-   
+
     from_saved_query = False
     saved_query = None
 
@@ -1012,7 +1011,6 @@ def run_report(request, report):
     # a second table for more complex queries
     summarytable2 = defaultdict(int)
 
-
     months = (
         _('Jan'),
         _('Feb'),
@@ -1027,7 +1025,7 @@ def run_report(request, report):
         _('Nov'),
         _('Dec'),
     )
-    
+
     first_ticket = Ticket.objects.all().order_by('created')[0]
     first_month = first_ticket.created.month
     first_year = first_ticket.created.year
@@ -1140,15 +1138,15 @@ def run_report(request, report):
             if report == 'daysuntilticketclosedbymonth':
                 summarytable2[metric1, metric2] += metric3
 
-    
+
     table = []
-    
+
     if report == 'daysuntilticketclosedbymonth':
         for key in summarytable2.keys():
             summarytable[key] = summarytable2[key] / summarytable[key]
 
     header1 = sorted(set(list( i.encode('utf-8') for i,_ in summarytable.keys() )))
-    
+
     column_headings = [col1heading] + possible_options
 
     # Pivot the data so that 'header1' fields are always first column
@@ -1364,11 +1362,11 @@ def calc_basic_ticket_stats(Ticket):
     date_30_str = date_30.strftime('%Y-%m-%d')
     date_60_str = date_60.strftime('%Y-%m-%d')
 
-    # > 0 & <= 30 
+    # > 0 & <= 30
     ota_le_30 = all_open_tickets.filter(created__gte = date_30_str)
     N_ota_le_30 = len(ota_le_30)
 
-    # >= 30 & <= 60 
+    # >= 30 & <= 60
     ota_le_60_ge_30 = all_open_tickets.filter(created__gte = date_60_str, created__lte = date_30_str)
     N_ota_le_60_ge_30 = len(ota_le_60_ge_30)
 
@@ -1391,7 +1389,7 @@ def calc_basic_ticket_stats(Ticket):
     average_nbr_days_until_ticket_closed_last_60_days = calc_average_nbr_days_until_ticket_resolved(all_closed_last_60_days)
 
     # put together basic stats
-    basic_ticket_stats = {  'average_nbr_days_until_ticket_closed': average_nbr_days_until_ticket_closed, 
+    basic_ticket_stats = {  'average_nbr_days_until_ticket_closed': average_nbr_days_until_ticket_closed,
                             'average_nbr_days_until_ticket_closed_last_60_days': average_nbr_days_until_ticket_closed_last_60_days,
                             'open_ticket_stats': ots, }
 
@@ -1416,6 +1414,3 @@ def date_rel_to_today(today, offset):
 
 def sort_string(begin, end):
     return 'sort=created&date_from=%s&date_to=%s&status=%s&status=%s&status=%s' %(begin, end, Ticket.OPEN_STATUS, Ticket.REOPENED_STATUS, Ticket.RESOLVED_STATUS)
-
-
-
