@@ -1,25 +1,42 @@
-{% extends "helpdesk/public_base.html" %}{% load i18n %}
-{% block helpdesk_title %}{{ helpdesk_settings.HELPDESK_PREPEND_ORG_NAME|default:'' }} {% trans "Helpdesk Login" %}{% endblock %}
-
-{% block helpdesk_body %}
-
+{% load i18n %}
+{% load widget_tweaks %}
+<!doctype html>
+<html>
+<head>
 {% if request.user.is_authenticated %}
     <meta http-equiv="REFRESH" content="0;url={% url helpdesk_home %}">
+</head>
 {% else %}
-    <h2>{% trans "Login" %}</h2>
-
-    <p>{% trans "To log in and begin responding to cases, simply enter your username and password below." %}</p>
-
+<meta charset="UTF-8">
+<title>QDQmedia HelpDesk</title>
+<!--[if IE]>
+<script src="http://login.apps.qdqmedia.com/js/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" href="http://estaticos.qdq.com/css/login-serge.css" ></link>
+</head>
+<body>
+<div id="contenedor">
+<div id="contenido" class="estirar">
     <form method='post' action='./'>
-        {% if form.errors %}<p>{% trans "Your username and password didn't match. Please try again." %}</p>{% endif %}
-        <dl>
-            <dt><label>{% trans "Username" %}</label></dt>
-            <dd>{{ form.username }}</dd>
-            <dt><label>{% trans "Password" %}</label></dt>
-            <dd>{{ form.password }}</dd>
-        </dl>
-        <input type='submit' value='{% trans "Login" %}' />
+        {% if form.errors %}
+            <p>{% trans "Your username and password didn't match. Please try again." %}</p>
+        {% endif %}
+            <input id="PAGE_URL" value="http://movil.qdqmedia.com:8080/TTR/index.jsp" type="hidden" name="PAGE_URL">
+            <input id="CAPTION" value="SIMULATOR" type="hidden" name="CAPTION">
+            <input id="PROGRAM_ID" value="MOVIL" type="hidden" name="PROGRAM_ID">
+            <input id="HOST" value="BALANCER1" type="hidden" name="HOST">
+            <input id="METHOD" value="GET" type="hidden" name="METHOD">
+	 	 <h1>HELPDESK</h1>
+   	 <fieldset id="inputs">
+        {{ form.username|attr:"placeholder:Usuario"|attr:"id:username" }}
+        {{ form.password|attr:"placeholder:Contraseña"|attr:"id:password" }}
+        <input id="submit" type="submit" value='{% trans "Login" %}' />
         <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}../{% endif %}" />
-    {% csrf_token %}</form>
+	  </fieldset>
+      {% csrf_token %}
+    </form>
+</div>
+</div>
 {% endif %}
-{% endblock %}
+</body>
+</html>

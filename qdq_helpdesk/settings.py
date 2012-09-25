@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     # Third-party apps.
 	'django_extensions',
     'south',
+    'widget_tweaks',
     'helpdesk',
 )
 
