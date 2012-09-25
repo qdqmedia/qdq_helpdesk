@@ -32,7 +32,7 @@ if type(DEFAULT_USER_SETTINGS) != type(dict()):
 
 ''' generic options - visible on all pages '''
 # redirect to login page instead of the default homepage when users visits "/"?
-HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = getattr(settings, 'HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT', False)
+HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT = getattr(settings, 'HELPDESK_REDIRECT_TO_LOGIN_BY_DEFAULT', True)
 
 # customize helpdesk name on a few pages, i.e., your organization.
 HELPDESK_PREPEND_ORG_NAME = getattr(settings, 'HELPDESK_PREPEND_ORG_NAME', False)
@@ -75,7 +75,7 @@ HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE = getattr(settings, 'HELPDESK_AUTO_SU
 
 ''' options for public pages '''
 # show 'view a ticket' section on public page?
-HELPDESK_VIEW_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_VIEW_A_TICKET_PUBLIC', True)
+HELPDESK_VIEW_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_VIEW_A_TICKET_PUBLIC', False)
 
 # show 'submit a ticket' section on public page?
 HELPDESK_SUBMIT_A_TICKET_PUBLIC = getattr(settings, 'HELPDESK_SUBMIT_A_TICKET_PUBLIC', True)
@@ -86,8 +86,8 @@ HELPDESK_SHOW_KB_ON_HOMEPAGE = getattr(settings, 'HELPDESK_SHOW_KB_ON_HOMEPAGE',
 
 
 ''' options for update_ticket views '''
-# allow non-staff users to interact with tickets? this will also change how 'staff_member_required' 
-# in staff.py will be defined.
+# allow non-staff users to interact with tickets? this will also change
+# how 'staff_member_required' in staff.py will be defined.
 HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE = getattr(settings, 'HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE', False)
 
 # show edit buttons in ticket follow ups.
