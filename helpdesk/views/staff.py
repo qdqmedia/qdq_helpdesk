@@ -885,7 +885,7 @@ edit_ticket = staff_member_required(edit_ticket)
 def create_ticket(request):
     if request.method == 'POST':
         form = TicketForm(request.POST, request.FILES)
-        form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
+        form.fields['queue'].choices = [[q.id, q.title] for q in Queue.objects.all()]
         form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.username] for u in User.objects.filter(is_active=True,is_staff=True).order_by('username')]
         if form.is_valid():
             ticket = form.save(user=request.user)
@@ -898,7 +898,7 @@ def create_ticket(request):
             initial_data['queue'] = request.GET['queue']
 
         form = TicketForm(initial=initial_data)
-        form.fields['queue'].choices = [('', '--------')] + [[q.id, q.title] for q in Queue.objects.all()]
+        form.fields['queue'].choices = [[q.id, q.title] for q in Queue.objects.all()]
         if helpdesk_settings.HELPDESK_STAFF_ONLY_TICKET_OWNERS:
             users = User.objects.filter(is_active=True, is_staff=True).order_by('username')
         else:
