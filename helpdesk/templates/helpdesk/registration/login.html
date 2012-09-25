@@ -21,12 +21,7 @@
         {% if form.errors %}
             <p>{% trans "Your username and password didn't match. Please try again." %}</p>
         {% endif %}
-            <input id="PAGE_URL" value="http://movil.qdqmedia.com:8080/TTR/index.jsp" type="hidden" name="PAGE_URL">
-            <input id="CAPTION" value="SIMULATOR" type="hidden" name="CAPTION">
-            <input id="PROGRAM_ID" value="MOVIL" type="hidden" name="PROGRAM_ID">
-            <input id="HOST" value="BALANCER1" type="hidden" name="HOST">
-            <input id="METHOD" value="GET" type="hidden" name="METHOD">
-	 	 <h1>HELPDESK</h1>
+      <h1>HELPDESK</h1>
    	 <fieldset id="inputs">
         {{ form.username|attr:"placeholder:Usuario"|attr:"id:username" }}
         {{ form.password|attr:"placeholder:Contraseña"|attr:"id:password" }}
