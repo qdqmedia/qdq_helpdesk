@@ -1,8 +1,8 @@
 import os
+
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = TEMPLATE_DEBUG = True
 
 ADMINS = (
     ('QDQ tech', 'tecnologia@qdqmedia.com'),
@@ -52,6 +52,17 @@ STATICFILES_FINDERS = (
 
 SECRET_KEY = '89u17t2-zrv*q!06^ka7ga(bf2+=v@c32s6a+l6!_=bq#y#-^1'
 
+QDQAUTHMIDDLEWARE = {
+    'secret_keyword': 'CMSDJANGO',
+    'url_login': 'http://login.apps.qdqmedia.com/index.php',
+    'create_user': True,
+    'program_id': 'CMS',
+    'caption': 'CMS',
+    'url_path_return': 'helpdesk_home',
+    'url_path_index' : 'helpdesk_home'
+}
+
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -63,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_qdqauth.login.QDQAuthMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -93,6 +105,7 @@ INSTALLED_APPS = (
     'south',
     'widget_tweaks',
     'helpdesk',
+    'django_qdqauth',
 )
 
 LOGGING = {
