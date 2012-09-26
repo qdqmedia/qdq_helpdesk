@@ -1584,22 +1584,24 @@ msgstr ""
 #: templates/helpdesk/public_homepage.html:29
 #: templates/helpdesk/public_view_form.html:15
 msgid "Your E-mail Address"
-msgstr ""
+msgstr "Tú dirección de email"
 
 #: templates/helpdesk/public_homepage.html:33
 #: templates/helpdesk/public_view_form.html:19
 msgid "View Ticket"
-msgstr ""
+msgstr "Ver un Ticket"
 
 #: templates/helpdesk/public_homepage.html:39
 msgid "Submit a Ticket"
-msgstr ""
+msgstr "Crear un Ticket"
 
 #: templates/helpdesk/public_homepage.html:41
 msgid ""
 "All fields are required. Please provide as descriptive a title and "
 "description as possible."
 msgstr ""
+"Todos los campos son obligatorios. Por favor, proporciona un título y una "
+"descripción lo más descriptivos posibles"
 
 #: templates/helpdesk/public_homepage.html:67
 msgid "Please use button at upper right to login first."
@@ -1607,7 +1609,7 @@ msgstr ""
 
 #: templates/helpdesk/public_spam.html:4
 msgid "Unable To Open Ticket"
-msgstr ""
+msgstr "Imposible abrir el Ticket"
 
 #: templates/helpdesk/public_spam.html:6
 msgid ""
