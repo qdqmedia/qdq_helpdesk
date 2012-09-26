@@ -1,0 +1,3 @@
+[submodule "django_qdqauth"]
+	path = django_qdqauth
+	url = git://git.qdqmedia.com/django_qdqauth
