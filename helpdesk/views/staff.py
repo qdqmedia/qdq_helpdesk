@@ -31,23 +31,15 @@ from helpdesk.lib import send_templated_mail, query_to_dict, apply_query, safe_t
 from helpdesk.models import Ticket, Queue, FollowUp, TicketChange, PreSetReply, Attachment, SavedSearch, IgnoreEmail, TicketCC, TicketDependency
 from helpdesk.settings import HAS_TAG_SUPPORT
 from helpdesk import settings as helpdesk_settings
+from helpdesk.decorators import only_staff_member
 
 if HAS_TAG_SUPPORT:
     from tagging.models import Tag, TaggedItem
 
-if helpdesk_settings.HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE:
-    # treat 'normal' users like 'staff'
-    staff_member_required = user_passes_test(lambda u: u.is_authenticated() and u.is_active)
-else:
-    try:
-        from django.contrib.admin.views.decorators import staff_member_required
-    except:
-        staff_member_required = user_passes_test(lambda u: u.is_authenticated() and u.is_active and u.is_staff)
-
-
 superuser_required = user_passes_test(lambda u: u.is_authenticated() and u.is_active and u.is_superuser)
 
 
+@only_staff_member
 def dashboard(request):
     """
     A quick summary overview for users: A list of their own tickets, a table
@@ -131,9 +123,8 @@ def dashboard(request):
             'dash_tickets': dash_tickets,
             'basic_ticket_stats': basic_ticket_stats,
         }))
-dashboard = staff_member_required(dashboard)
 
-
+@only_staff_member
 def delete_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
 
@@ -145,8 +136,8 @@ def delete_ticket(request, ticket_id):
     else:
         ticket.delete()
         return HttpResponseRedirect(reverse('helpdesk_home'))
-delete_ticket = staff_member_required(delete_ticket)
 
+@only_staff_member
 def followup_edit(request, ticket_id, followup_id):
     "Edit followup options with an ability to change the ticket."
     followup = get_object_or_404(FollowUp, id=followup_id)
@@ -192,8 +183,8 @@ def followup_edit(request, ticket_id, followup_id):
             # delete old followup
             followup.delete()
         return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
-followup_edit = staff_member_required(followup_edit)
 
+@only_staff_member
 def followup_delete(request, ticket_id, followup_id):
     ''' followup delete for superuser'''
 
@@ -204,9 +195,8 @@ def followup_delete(request, ticket_id, followup_id):
     followup = get_object_or_404(FollowUp, id=followup_id)
     followup.delete()
     return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
-followup_delete = staff_member_required(followup_delete)
 
-
+@only_staff_member
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
 
@@ -269,7 +259,6 @@ def view_ticket(request, ticket_id):
             'ticketcc_string': ticketcc_string,
             'SHOW_SUBSCRIBE': SHOW_SUBSCRIBE,
         }))
-view_ticket = staff_member_required(view_ticket)
 
 def return_ticketccstring_and_show_subscribe(user, ticket):
     ''' used in view_ticket() and followup_edit()'''
@@ -304,7 +293,6 @@ def return_ticketccstring_and_show_subscribe(user, ticket):
 
     return ticketcc_string, SHOW_SUBSCRIBE
 
-
 def subscribe_staff_member_to_ticket(ticket, user):
     ''' used in view_ticket() and update_ticket() '''
     ticketcc = TicketCC()
@@ -313,7 +301,6 @@ def subscribe_staff_member_to_ticket(ticket, user):
     ticketcc.can_view = True
     ticketcc.can_update = True
     ticketcc.save()
-
 
 def update_ticket(request, ticket_id, public=False):
     if not (public or (request.user.is_authenticated() and request.user.is_active and (request.user.is_staff or helpdesk_settings.HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE))):
@@ -573,7 +560,7 @@ def return_to_ticket(user, helpdesk_settings, ticket):
     else:
         return HttpResponseRedirect(ticket.ticket_url)
 
-
+@only_staff_member
 def mass_update(request):
     tickets = request.POST.getlist('ticket_id')
     action = request.POST.get('action', None)
@@ -662,8 +649,8 @@ def mass_update(request):
             t.delete()
 
     return HttpResponseRedirect(reverse('helpdesk_list'))
-mass_update = staff_member_required(mass_update)
 
+@only_staff_member
 def ticket_list(request):
     context = {}
 
@@ -862,9 +849,8 @@ def ticket_list(request):
             search_message=search_message,
             tags_enabled=HAS_TAG_SUPPORT
         )))
-ticket_list = staff_member_required(ticket_list)
 
-
+@only_staff_member
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if request.method == 'POST':
@@ -880,8 +866,8 @@ def edit_ticket(request, ticket_id):
             'form': form,
             'tags_enabled': HAS_TAG_SUPPORT,
         }))
-edit_ticket = staff_member_required(edit_ticket)
 
+@only_staff_member
 def create_ticket(request):
     if request.method == 'POST':
         form = TicketForm(request.POST, request.FILES)
@@ -912,9 +898,8 @@ def create_ticket(request):
             'form': form,
             'tags_enabled': HAS_TAG_SUPPORT,
         }))
-create_ticket = staff_member_required(create_ticket)
 
-
+@only_staff_member
 def raw_details(request, type):
     # TODO: This currently only supports spewing out 'PreSetReply' objects,
     # in the future it needs to be expanded to include other items. All it
@@ -931,9 +916,8 @@ def raw_details(request, type):
             raise Http404
 
     raise Http404
-raw_details = staff_member_required(raw_details)
 
-
+@only_staff_member
 def hold_ticket(request, ticket_id, unhold=False):
     ticket = get_object_or_404(Ticket, id=ticket_id)
 
@@ -956,22 +940,20 @@ def hold_ticket(request, ticket_id, unhold=False):
     ticket.save()
 
     return HttpResponseRedirect(ticket.get_absolute_url())
-hold_ticket = staff_member_required(hold_ticket)
 
-
+@only_staff_member
 def unhold_ticket(request, ticket_id):
     return hold_ticket(request, ticket_id, unhold=True)
-unhold_ticket = staff_member_required(unhold_ticket)
 
-
+@only_staff_member
 def rss_list(request):
     return render_to_response('helpdesk/rss_list.html',
         RequestContext(request, {
             'queues': Queue.objects.all(),
         }))
-rss_list = staff_member_required(rss_list)
 
 
+@only_staff_member
 def report_index(request):
     number_tickets = Ticket.objects.all().count()
     saved_query = request.GET.get('saved_query', None)
@@ -980,9 +962,9 @@ def report_index(request):
             'number_tickets': number_tickets,
             'saved_query': saved_query,
         }))
-report_index = staff_member_required(report_index)
 
 
+@only_staff_member
 def run_report(request, report):
     if Ticket.objects.all().count() == 0 or report not in ('queuemonth', 'usermonth', 'queuestatus', 'queuepriority', 'userstatus', 'userpriority', 'userqueue', 'daysuntilticketclosedbymonth'):
         return HttpResponseRedirect(reverse("helpdesk_report_index"))
@@ -1166,9 +1148,8 @@ def run_report(request, report):
             'from_saved_query': from_saved_query,
             'saved_query': saved_query,
         }))
-run_report = staff_member_required(run_report)
 
-
+@only_staff_member
 def save_query(request):
     title = request.POST.get('title', None)
     shared = request.POST.get('shared', False)
@@ -1181,9 +1162,8 @@ def save_query(request):
     query.save()
 
     return HttpResponseRedirect('%s?saved_query=%s' % (reverse('helpdesk_list'), query.id))
-save_query = staff_member_required(save_query)
 
-
+@only_staff_member
 def delete_saved_query(request, id):
     query = get_object_or_404(SavedSearch, id=id, user=request.user)
 
@@ -1195,9 +1175,8 @@ def delete_saved_query(request, id):
             RequestContext(request, {
                 'query': query,
                 }))
-delete_saved_query = staff_member_required(delete_saved_query)
 
-
+@only_staff_member
 def user_settings(request):
     s = request.user.usersettings
     if request.POST:
@@ -1219,8 +1198,6 @@ def user_settings(request):
             'form': form,
             'show_password_change_link': show_password_change_link,
         }))
-user_settings = staff_member_required(user_settings)
-
 
 def email_ignore(request):
     return render_to_response('helpdesk/email_ignore_list.html',
@@ -1258,6 +1235,7 @@ def email_ignore_del(request, id):
             }))
 email_ignore_del = superuser_required(email_ignore_del)
 
+@only_staff_member
 def ticket_cc(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     copies_to = ticket.ticketcc_set.all()
@@ -1266,8 +1244,8 @@ def ticket_cc(request, ticket_id):
             'copies_to': copies_to,
             'ticket': ticket,
         }))
-ticket_cc = staff_member_required(ticket_cc)
 
+@only_staff_member
 def ticket_cc_add(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if request.method == 'POST':
@@ -1284,8 +1262,8 @@ def ticket_cc_add(request, ticket_id):
             'ticket': ticket,
             'form': form,
         }))
-ticket_cc_add = staff_member_required(ticket_cc_add)
 
+@only_staff_member
 def ticket_cc_del(request, ticket_id, cc_id):
     cc = get_object_or_404(TicketCC, ticket__id=ticket_id, id=cc_id)
     if request.method == 'POST':
@@ -1295,8 +1273,8 @@ def ticket_cc_del(request, ticket_id, cc_id):
         RequestContext(request, {
             'cc': cc,
         }))
-ticket_cc_del = staff_member_required(ticket_cc_del)
 
+@only_staff_member
 def ticket_dependency_add(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if request.method == 'POST':
@@ -1314,8 +1292,8 @@ def ticket_dependency_add(request, ticket_id):
             'ticket': ticket,
             'form': form,
         }))
-ticket_dependency_add = staff_member_required(ticket_dependency_add)
 
+@only_staff_member
 def ticket_dependency_del(request, ticket_id, dependency_id):
     dependency = get_object_or_404(TicketDependency, ticket__id=ticket_id, id=dependency_id)
     if request.method == 'POST':
@@ -1325,14 +1303,13 @@ def ticket_dependency_del(request, ticket_id, dependency_id):
         RequestContext(request, {
             'dependency': dependency,
         }))
-ticket_dependency_del = staff_member_required(ticket_dependency_del)
 
+@only_staff_member
 def attachment_del(request, ticket_id, attachment_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     attachment = get_object_or_404(Attachment, id=attachment_id)
     attachment.delete()
     return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket_id]))
-attachment_del = staff_member_required(attachment_del)
 
 def calc_average_nbr_days_until_ticket_resolved(Tickets):
     nbr_closed_tickets = len(Tickets)
