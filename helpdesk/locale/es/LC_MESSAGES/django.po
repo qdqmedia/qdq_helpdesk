@@ -1289,7 +1289,7 @@ msgstr "No hay tickets sin asignar."
 
 #: templates/helpdesk/dashboard.html:120
 msgid "Closed & resolved Tickets you used to work on"
-msgstr "Cerrar y resolver tickets"
+msgstr "Tickets cerrados y resueltos"
 
 #: templates/helpdesk/delete_ticket.html:3
 msgid "Delete Ticket"
@@ -1305,6 +1305,13 @@ msgid ""
 "All traces of the ticket, including followups, attachments, and updates will "
 "be irreversably removed.</p>\n"
 msgstr ""
+"\n"
+"<h2>Borrar Ticket</h2>\n"
+"\n"
+"<p>¿Seguro que quieres borrar este ticket (<em>%(ticket_title)s</em>)? "
+"Todo el seguimiento del ticket, incluyendo los adjuntos y actualizaciones "
+"serán borrados</p>\n"
+
 
 #: templates/helpdesk/edit_ticket.html:3
 msgid "Edit Ticket"
