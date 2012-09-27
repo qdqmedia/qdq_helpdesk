@@ -10,6 +10,7 @@ views/staff.py - The bulk of the application - provides most business logic and
 from datetime import datetime, timedelta
 
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.files.base import ContentFile
@@ -541,6 +542,7 @@ def update_ticket(request, ticket_id, public=False):
             )
 
     ticket.save()
+    messages.add_message(request, messages.INFO, _('Ticket has been updated'))
 
     # auto subscribe user if enabled
     if helpdesk_settings.HELPDESK_AUTO_SUBSCRIBE_ON_TICKET_RESPONSE:
