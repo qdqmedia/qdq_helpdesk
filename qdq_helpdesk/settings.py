@@ -74,7 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django_qdqauth.login.QDQAuthMiddleware',
+#    'django_qdqauth.login.QDQAuthMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -105,7 +105,7 @@ INSTALLED_APPS = (
     'south',
     'widget_tweaks',
     'helpdesk',
-    'django_qdqauth',
+#    'django_qdqauth',
 )
 
 LOGGING = {
