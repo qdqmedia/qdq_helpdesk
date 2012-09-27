@@ -8,7 +8,6 @@ views/staff.py - The bulk of the application - provides most business logic and
 """
 
 from datetime import datetime, timedelta
-import sys
 
 from django.conf import settings
 from django.contrib.auth.models import User
