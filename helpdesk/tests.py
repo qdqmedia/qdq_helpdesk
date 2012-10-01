@@ -34,12 +34,17 @@ class TicketsTestCase(TestCase):
         self.staff_user.set_password(PASSWORD)
         self.staff_user.email = 'email2@email.com'
         self.staff_user.save()
+        # Creating a simple Ticket
+        self.ticket = milkman.deliver(Ticket)
         # HTTP client
         self.client = Client()
 
     def tearDown(self):
         self.user.delete()
         self.staff_user.delete()
+        self.queue_main.delete()
+        self.queue_urg.delete()
+        self.ticket.delete()
 
     def test_user_create_ticket(self):
         self.client.login(username=self.user.username, password=PASSWORD)
@@ -102,3 +107,17 @@ class TicketsTestCase(TestCase):
                                     follow=True)
 
         self.assertEqual(response.status_code, 404)
+
+    def test_user_cannot_acces_to_ticket(self):
+        self.client.login(username=self.user.username, password=PASSWORD)
+        response = self.client.get(reverse('helpdesk_view', args=[self.ticket.id]))
+        self.assertEqual(response.status_code, 404)
+
+    def test_ticket_assign(self):
+        t = Ticket.objects.get(id=self.ticket.id)
+        self.assertEqual(t.assigned_to, None)
+        t.assigned_to = self.staff_user
+        t.save()
+        t_assigned = Ticket.objects.get(id=self.ticket.id)
+        self.assertEqual(t_assigned.assigned_to, self.staff_user)
+
