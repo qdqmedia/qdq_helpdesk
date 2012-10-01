@@ -46,10 +46,6 @@
 
 {% block helpdesk_body %}
 {% if helpdesk_settings.HELPDESK_TRANSLATE_TICKET_COMMENTS %}
-{% comment %}
-<div id='translate_dropdown'>{% trans "Translate ticket comments into" %} </div>
-<div id='translate_block'>
-{% endcomment %}
 <div id="google_translate_element"></div><script>
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
