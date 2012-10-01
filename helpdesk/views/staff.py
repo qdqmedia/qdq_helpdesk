@@ -258,6 +258,7 @@ def view_ticket(request, ticket_id):
             'tags_enabled': HAS_TAG_SUPPORT,
             'ticketcc_string': ticketcc_string,
             'SHOW_SUBSCRIBE': SHOW_SUBSCRIBE,
+            'followups': ticket.followup_set.order_by('-date'),
         }))
 
 def return_ticketccstring_and_show_subscribe(user, ticket):

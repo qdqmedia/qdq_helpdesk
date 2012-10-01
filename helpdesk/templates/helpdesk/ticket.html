@@ -76,7 +76,7 @@ function googleTranslateElementInit() {
 {% if ticket.followup_set.all %}
 <h3>{% trans "Follow-Ups" %}</h3>
 {% load ticket_to_link %}
-{% for followup in ticket.followup_set.all %}
+{% for followup in followups %}
 {% if helpdesk_settings.HELPDESK_FOLLOWUP_MOD %}
     <div class='followup_mod'>
     <div class='title'>
