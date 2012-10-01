@@ -27,10 +27,12 @@
                 });
             }
         });
+        $("#commentBox").cleditor();
+        $("#id_due_date").datepicker($.datepicker.regional['es']);
     });
 
     function processAddFileClick() {
-        /* Until jQuery includes some 'livequery' functionality in the core 
+        /* Until jQuery includes some 'livequery' functionality in the core
            distribution, this will have to do. */
         $(".AddAnotherFile>a").click(function() {
             $(this).parent().remove();
@@ -38,7 +40,6 @@
             processAddFileClick();
             return false;
         });
-
     }
 </script>
 {% endblock %}
@@ -236,11 +237,4 @@ function googleTranslateElementInit() {
 {% csrf_token %}</form>
 
 </div>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#commentBox").cleditor();
-    $("#id_due_date").datepicker($.datepicker.regional['es']);
-});
-</script>
-
 {% endblock %}
