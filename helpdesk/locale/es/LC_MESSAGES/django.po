@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-helpdesk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-01 09:43+0200\n"
+"POT-Creation-Date: 2012-10-01 16:10+0200\n"
 "PO-Revision-Date: 2012-04-26 08:25+0000\n"
 "Last-Translator: Ross Poulton <ross@rossp.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-helpdesk/"
@@ -118,7 +118,7 @@ msgstr "Ticket abierto & Asignado a %(name)s"
 
 #: forms.py:360
 msgid "Summary of your query"
-msgstr "Resumen de su consulta"
+msgstr "Resumen"
 
 #: forms.py:365
 msgid "Your E-Mail Address"
@@ -574,7 +574,7 @@ msgstr "Comentario"
 msgid "Public"
 msgstr "Público"
 
-#: models.py:512
+#: models.py:512 templates/helpdesk/followup_edit.html:22
 msgid ""
 "Public tickets are viewable by the submitter and all staff, but non-public "
 "tickets can only be seen by staff."
@@ -1995,7 +1995,7 @@ msgstr ""
 
 #: templates/helpdesk/ticket_dependency_add.html:3
 msgid "Add Ticket Dependency"
-msgstr ""
+msgstr "Añadir Dependencia de Ticket"
 
 #: templates/helpdesk/ticket_dependency_add.html:5
 msgid ""
@@ -2005,14 +2005,19 @@ msgid ""
 "<p>Adding a dependency will stop you resolving this ticket until the "
 "dependent ticket has been resolved or closed.</p>"
 msgstr ""
+"\n"
+"<h2>Añadir Dependencia de Ticket</h2>\n"
+"\n"
+"<p>Al añadir una dependencia no podrás resolver o cerrar este ticket hasta "
+"que no resuelvas o cierres del que depende.</p>"
 
 #: templates/helpdesk/ticket_dependency_add.html:21
 msgid "Save Ticket Dependency"
-msgstr ""
+msgstr "Actualizar Dependencia"
 
 #: templates/helpdesk/ticket_dependency_del.html:3
 msgid "Delete Ticket Dependency"
-msgstr ""
+msgstr "Borrar Dependencia"
 
 #: templates/helpdesk/ticket_dependency_del.html:5
 msgid ""
