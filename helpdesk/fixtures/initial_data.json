@@ -976,7 +976,7 @@
             "email_box_user": "",
             "new_ticket_cc": "",
             "email_box_host": "",
-            "allow_public_submission": false,
+            "allow_public_submission": true,
             "email_box_last_check": null,
             "allow_email_submission": false,
             "email_address": "",
