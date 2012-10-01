@@ -876,6 +876,7 @@ def create_ticket(request):
         form.fields['assigned_to'].choices = [('', '--------')] + [[u.id, u.username] for u in User.objects.filter(is_active=True,is_staff=True).order_by('username')]
         if form.is_valid():
             ticket = form.save(user=request.user)
+            messages.add_message(request, messages.INFO, _('Ticket has been created'))
             return HttpResponseRedirect(ticket.get_absolute_url())
     else:
         initial_data = {}

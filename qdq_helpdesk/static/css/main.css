@@ -1,0 +1,19 @@
+#messages {
+    text-align: center;
+    background-color: #C9DFAF;
+}
+
+.messages li {
+    list-style-type: none;
+}
+
+.errorlist ul {
+    text-align: left;
+}
+
+.errorlist li {
+    list-style-type: none;
+    background-color: #ffdddd;
+    padding-left: 0px;
+    margin-left: 0px;
+}
