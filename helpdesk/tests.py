@@ -17,10 +17,12 @@ class TicketsTestCase(TestCase):
         self.queue_main.title = 'Main'
         self.queue_main.slug = 'main'
         self.queue_main.allow_public_submission = True
+        self.queue_main.save()
         # Creating 'urgent' queue
         self.queue_urg = milkman.deliver(Queue)
         self.queue_urg.title = 'Urgent'
         self.queue_urg.slug = 'urg'
+        self.queue_urg.save()
         # Creating a regular user
         self.user = milkman.deliver(User)
         self.user.set_password(PASSWORD)
@@ -47,12 +49,18 @@ class TicketsTestCase(TestCase):
                      'priority': 3,
                      }
         self.client.login(username=self.user.username, password=PASSWORD)
-        response = self.client.post(reverse('helpdesk_home'), post_data)
-        import ipdb; ipdb.set_trace()
+        response = self.client.post(reverse('helpdesk_home'),
+                                    post_data,
+                                    follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.template[0].name, 'helpdesk/public_homepage.html')
-        ticket = Ticket.objects.get(title=post_data['ticket'])
-        import ipdb; ipdb.set_trace()
+        self.assertEqual(response.template[0].name,
+                         'helpdesk/public_view_ticket.html')
+        ticket = Ticket.objects.get(title=post_data['title'])
+        self.assertEqual(ticket.title, post_data['title'])
+        self.assertEqual(ticket.queue.id, post_data['queue'])
+        self.assertEqual(ticket.submitter_email, post_data['submitter_email'])
+        self.assertEqual(ticket.description, post_data['body'])
+        self.assertEqual(ticket.priority, post_data['priority'])
 
     def test_staff_user_create_ticket(self):
         pass
