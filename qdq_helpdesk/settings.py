@@ -1,4 +1,5 @@
 import os
+import sys
 
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 
@@ -131,3 +132,6 @@ LOGGING = {
         },
     }
 }
+
+if 'test' in sys.argv and DEBUG is True:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
