@@ -958,5 +958,53 @@
             "heading": "Il Tuo Ticket \u00e8 Stato Aggiornato", 
             "subject": "(Aggiornato)"
         }
+    },
+    {
+        "pk": 1,
+        "model": "helpdesk.queue",
+        "fields": {
+            "email_box_interval": 5,
+            "email_box_imap_folder": "",
+            "email_box_type": null,
+            "updated_ticket_cc": "",
+            "title": "Principal",
+            "locale": "",
+            "email_box_ssl": false,
+            "escalate_days": null,
+            "email_box_port": null,
+            "email_box_pass": "",
+            "email_box_user": "",
+            "new_ticket_cc": "",
+            "email_box_host": "",
+            "allow_public_submission": false,
+            "email_box_last_check": null,
+            "allow_email_submission": false,
+            "email_address": "",
+            "slug": "ppal"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "helpdesk.queue",
+        "fields": {
+            "email_box_interval": 5,
+            "email_box_imap_folder": "",
+            "email_box_type": null,
+            "updated_ticket_cc": "",
+            "title": "Urgente",
+            "locale": "",
+            "email_box_ssl": false,
+            "escalate_days": null,
+            "email_box_port": null,
+            "email_box_pass": "",
+            "email_box_user": "",
+            "new_ticket_cc": "",
+            "email_box_host": "",
+            "allow_public_submission": false,
+            "email_box_last_check": null,
+            "allow_email_submission": false,
+            "email_address": "",
+            "slug": "urgente"
+        }
     }
  ]
