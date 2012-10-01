@@ -42,13 +42,13 @@ class TicketsTestCase(TestCase):
         self.staff_user.delete()
 
     def test_user_create_ticket(self):
+        self.client.login(username=self.user.username, password=PASSWORD)
         post_data = {'title': 'First ticket title',
                      'queue': self.queue_main.id,
                      'submitter_email': self.user.email,
                      'body': 'First ticket body',
                      'priority': 3,
                      }
-        self.client.login(username=self.user.username, password=PASSWORD)
         response = self.client.post(reverse('helpdesk_home'),
                                     post_data,
                                     follow=True)
@@ -63,4 +63,42 @@ class TicketsTestCase(TestCase):
         self.assertEqual(ticket.priority, post_data['priority'])
 
     def test_staff_user_create_ticket(self):
-        pass
+        self.client.login(username=self.staff_user.username, password=PASSWORD)
+        post_data = {'title': 'Staff ticket title',
+                     'queue': self.queue_main.id,
+                     'submitter_email': self.user.email,
+                     'body': 'Staff ticket body',
+                     'priority': 3,
+                     }
+        response = self.client.post(reverse('helpdesk_submit'),
+                                    post_data,
+                                    follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.template[0].name, 'helpdesk/ticket.html')
+        ticket = Ticket.objects.get(title=post_data['title'])
+        self.assertEqual(ticket.title, post_data['title'])
+        self.assertEqual(ticket.queue.id, post_data['queue'])
+        self.assertEqual(ticket.submitter_email, post_data['submitter_email'])
+        self.assertEqual(ticket.description, post_data['body'])
+        self.assertEqual(ticket.priority, post_data['priority'])
+
+    def test_staff_main_page_is_dashboard(self):
+        self.client.login(username=self.staff_user.username, password=PASSWORD)
+        response = self.client.get(reverse('helpdesk_home'), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.template[0].name, 'helpdesk/dashboard.html')
+
+    def test_user_cannot_create_non_public_ticket(self):
+        post_data = {'title': 'First ticket title',
+                     'queue': self.queue_main.id,
+                     'submitter_email': self.user.email,
+                     'body': 'First ticket body',
+                     'priority': 3,
+                     }
+
+        self.client.login(username=self.user.username, password=PASSWORD)
+        response = self.client.post(reverse('helpdesk_submit'),
+                                    post_data,
+                                    follow=True)
+
+        self.assertEqual(response.status_code, 404)
