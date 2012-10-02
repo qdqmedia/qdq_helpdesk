@@ -7,8 +7,19 @@
 
 <p>Unless otherwise stated, all fields are required. Please provide as descriptive a title and description as possible.</p>{% endblocktrans %}
 
-<form method='post' action='./' enctype='multipart/form-data'>
-<fieldset>
+<form method="post" action="./" enctype="multipart/form-data" class="form-horizontal">
+    {% for field in form %}
+        <div class="control-group">
+        {% if field.is_hidden %}
+            {{ field }}
+        {% else %}
+            <label class="control-label" for="id_{{ field.name }}">{% trans field.label %}</label>
+            <div class="controls">{{ field }}</div>
+        {% endif %}
+        </div>
+    {% endfor %}
+
+    {% comment %}
     <dl>
         {% for field in form %}
             {% if field.is_hidden %}
@@ -21,13 +32,10 @@
             {% endif %}
         {% endfor %}
     </dl>
-
-    <div class='buttons'>
-        <input type='submit' value='{% trans "Submit Ticket" %}' />
-    </div>
-</fieldset>
-
-{% csrf_token %}</form>
+    {% endcomment %}
+    <button class="btn btn-success btn-small" type="button">{% trans "Submit Ticket" %}</button>
+{% csrf_token %}
+</form>
 <script type="text/javascript">
 $(document).ready(function() {
     $("#id_body").cleditor();
