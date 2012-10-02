@@ -697,7 +697,7 @@ def ticket_list(request):
         if filter:
             try:
                 ticket = Ticket.objects.get(**filter)
-                return HttpResponseRedirect(ticket.staff_url)
+                return HttpResponseRedirect(ticket.get_absolute_url())
             except Ticket.DoesNotExist:
                 # Go on to standard keyword searching
                 pass
