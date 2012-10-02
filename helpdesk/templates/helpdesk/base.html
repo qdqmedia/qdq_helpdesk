@@ -31,6 +31,9 @@
       .sidebar-nav {
         padding: 9px 0;
       }
+      input#search_query {
+          margin-top: 7px;
+      }
     </style>
     <link href="{{STATIC_URL}}/css/bootstrap-responsive.min.css" rel="stylesheet">
 
@@ -67,7 +70,19 @@
             </p>
             <ul class="nav">
               <li class="active"><a href="{% url 'helpdesk_dashboard' %}">Home</a></li>
-              <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% if not query %}
+                <li>
+                    <form id="searchform" class="form-search" method="get" action="{% url 'helpdesk_list' %}">
+                        <input type="text" name="q" size="4" class="input-medium search-query" id="search_query" placeholder="{% trans "Search..." %}" title="{% trans "Enter a keyword, or a ticket number to jump straight to that ticket." %}"/>
+                        <input type="hidden" name="status" value="1" />
+                        <input type="hidden" name="status" value="2" />
+                        <input type="hidden" name="status" value="3" />
+                        <input type="hidden" name="search_type" value="header" />
+                        {% csrf_token %}
+                     </form>
+                 </li>
+              {% endif %}
             </ul>
           </div><!--/.nav-collapse -->
         </div>
