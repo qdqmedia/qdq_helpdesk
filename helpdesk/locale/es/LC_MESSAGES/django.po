@@ -1280,7 +1280,7 @@ msgstr "(elige un ticket para trabajar en él)"
 #: templates/helpdesk/dashboard.html:107
 #: templates/helpdesk/ticket_desc_table.html:22
 msgid "Take"
-msgstr "Coger ticket"
+msgstr "Asígnamelo"
 
 #: templates/helpdesk/dashboard.html:107
 #: templates/helpdesk/email_ignore_list.html:13
