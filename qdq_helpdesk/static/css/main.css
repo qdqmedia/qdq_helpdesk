@@ -1,3 +1,22 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+input#search_query {
+    margin-top: 7px;
+}
+
+span.red {
+    color: red;
+    font-weight: bold;
+    padding-left: 4px;
+}
+
 #messages {
     text-align: center;
     background-color: #C9DFAF;
