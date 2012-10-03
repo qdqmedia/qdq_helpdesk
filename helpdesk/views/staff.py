@@ -867,6 +867,7 @@ def edit_ticket(request, ticket_id):
         RequestContext(request, {
             'form': form,
             'tags_enabled': HAS_TAG_SUPPORT,
+            'ticket_id': ticket_id,
         }))
 
 @only_staff_member
