@@ -13,27 +13,17 @@
         {% if field.is_hidden %}
             {{ field }}
         {% else %}
-            <label class="control-label" for="id_{{ field.name }}">{% trans field.label %}</label>
-            <div class="controls">{{ field }}</div>
+            <label class="control-label" for="id_{{ field.name }}">{% trans field.label %}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+            <div class="controls">
+                {{ field }}
+            {% if field.errors %}
+                <span class="help-inline">{{ field.errors }}</span>
+            {% endif %}
+            </div>
         {% endif %}
         </div>
     {% endfor %}
-
-    {% comment %}
-    <dl>
-        {% for field in form %}
-            {% if field.is_hidden %}
-                {{ field }}
-            {% else %}
-                <dt><label for='id_{{ field.name }}'>{% trans field.label %}</label>{% if not field.field.required %} <span class='form_optional'>{% trans "(Optional)" %}</span>{% endif %}</dt>
-                <dd>{{ field }}</dd>
-                {% if field.errors %}<dd class='error'>{{ field.errors }}</dd>{% endif %}
-                {% if field.help_text %}<dd class='form_help_text'>{% trans field.help_text %}</dd>{% endif %}
-            {% endif %}
-        {% endfor %}
-    </dl>
-    {% endcomment %}
-    <button class="btn btn-success btn-small" type="button">{% trans "Submit Ticket" %}</button>
+    <button class="btn btn-success btn-small" type="submit">{% trans "Submit Ticket" %}</button>
 {% csrf_token %}
 </form>
 <script type="text/javascript">

@@ -7,24 +7,44 @@
 {% include "helpdesk/ticket_desc_table.html" %}
 
 <h3>{% trans "Edit FollowUp" %}</h3>
-    <form action="." method="POST" name="edit_followup_form">
-        {{ form.non_field_errors }}
-        <fieldset>
-        <dl>
-            <dt><label for='id_ticket'>{% trans "Reassign ticket:" %}</label></dt>
-            <dd>{{ form.ticket }}</dd>
-            <dt><label for="id_title">{% trans "Title:" %}</label></dt>
-            <dd>{{ form.title }}</dd>
-            <dt><label for="id_comment">{% trans "Comment:" %}</label></dt>
-            <dd>{{ form.comment }}</dd>
-            <dt><label for="id_public">Public:</label></dt>
-            <dd>{{ form.public }}</dd>
-                <p>{% trans 'Public tickets are viewable by the submitter and all staff, but non-public tickets can only be seen by staff.' %}</p>
-            <dt><label for="id_new_status">New Status:</label></dt>
-            <dd>{{ form.new_status }}</dd>
-                <p>{% trans 'If the status was changed, what was it changed to?' %}</p>
-        </dl>
-        </fieldset>
-        <p><input type="submit" value="Submit"></p>{% csrf_token %}
-    </form>
+<form action="." method="POST" name="edit_followup_form" class="form-horizontal">
+    {{ form.non_field_errors }}
+    <div class="control-group">
+        <label class="control-label" for="id_ticket">{% trans "Reassign ticket:" %}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+        <div class="controls">
+            {{ form.ticket }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_title">{% trans "Title:" %}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+        <div class="controls">
+            {{ form.title }}
+        </div>
+    </div>
+     <div class="control-group">
+        <label class="control-label" for="id_comment">{% trans "Comment:"%}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+        <div class="controls">
+            {{ form.comment }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_public">{% trans "Public:"%}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+        <div class="controls">
+            {{ form.public }}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="id_new_status">{% trans "New status:"%}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
+        <div class="controls">
+            {{ form.new_status }}
+        </div>
+    </div>
+    <button class="btn btn-success btn-small" type="submit">{% trans "Update Ticket" %}</button>
+{% csrf_token %}
+</form>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#id_comment").cleditor();
+});
+</script>
 {% endblock helpdesk_body %}
