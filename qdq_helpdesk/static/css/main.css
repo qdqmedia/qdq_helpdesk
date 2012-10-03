@@ -36,3 +36,8 @@ span.red {
     padding-left: 0px;
     margin-left: 0px;
 }
+
+div#button-tickets {
+    margin-top: 15px;
+    text-align: right;
+}
