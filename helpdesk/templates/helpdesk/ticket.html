@@ -67,16 +67,6 @@
 
 {% block helpdesk_body %}
 
-{% if messages %}
-  <div id="messages">
-     <ul class="messages">
-     {% for message in messages %}
-        <li>{{ message }}</li>
-     {% endfor %}
-     </ul>
-  </div>
-{% endif %}
-
 {% include "helpdesk/ticket_desc_table.html" %}
 
 {% include "helpdesk/ticket_followups.html" %}
