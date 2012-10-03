@@ -859,6 +859,7 @@ def edit_ticket(request, ticket_id):
         form = EditTicketForm(request.POST, instance=ticket)
         if form.is_valid():
             ticket = form.save()
+            messages.add_message(request, messages.INFO, _('Ticket has been saved'))
             return HttpResponseRedirect(ticket.get_absolute_url())
     else:
         form = EditTicketForm(instance=ticket)
