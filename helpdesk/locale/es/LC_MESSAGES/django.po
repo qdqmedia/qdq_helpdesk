@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-helpdesk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-03 17:46+0200\n"
+"POT-Creation-Date: 2012-10-04 15:03+0200\n"
 "PO-Revision-Date: 2012-04-26 08:25+0000\n"
 "Last-Translator: Ross Poulton <ross@rossp.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-helpdesk/"
@@ -28,8 +28,8 @@ msgstr ""
 #: templates/helpdesk/ticket_desc_table.html:29
 #: templates/helpdesk/ticket_list.html:54
 #: templates/helpdesk/ticket_list.html:76
-#: templates/helpdesk/ticket_list.html:197 views/staff.py:1063
-#: views/staff.py:1069 views/staff.py:1075 views/staff.py:1081
+#: templates/helpdesk/ticket_list.html:197 views/staff.py:1067
+#: views/staff.py:1073 views/staff.py:1079 views/staff.py:1085
 msgid "Queue"
 msgstr "Cola"
 
@@ -590,8 +590,8 @@ msgstr ""
 "soporte, mientras los tickets no públicos sólo pueden ser vistos por el "
 "personal de soporte."
 
-#: models.py:520 models.py:894 models.py:1087 views/staff.py:1039
-#: views/staff.py:1045 views/staff.py:1051 views/staff.py:1057
+#: models.py:520 models.py:894 models.py:1087 views/staff.py:1043
+#: views/staff.py:1049 views/staff.py:1055 views/staff.py:1061
 msgid "User"
 msgstr "Usuario"
 
@@ -1728,7 +1728,7 @@ msgstr "por Mes"
 msgid "Reports By Queue"
 msgstr "Informes por Cola"
 
-#: templates/helpdesk/report_index.html:27 views/staff.py:1080
+#: templates/helpdesk/report_index.html:27 views/staff.py:1084
 msgid "Days until ticket closed by Month"
 msgstr "Días hasta que el ticket esté cerrado por mes"
 
@@ -2447,91 +2447,103 @@ msgstr ""
 "docs.djangoproject.com/en/dev/ref/databases/#sqlite-string-matching\">Django "
 "Documentation on string matching in SQLite</a>."
 
-#: views/staff.py:881
+#: views/staff.py:862
+msgid "Ticket has been saved"
+msgstr "Ticket guardado"
+
+#: views/staff.py:882
 msgid "Ticket has been created"
 msgstr "Ticket creado"
 
-#: views/staff.py:930
+#: views/staff.py:931
 msgid "Ticket taken off hold"
 msgstr "Ticket desbloqueado"
 
-#: views/staff.py:933
+#: views/staff.py:932
+msgid "Ticket has been unblocked"
+msgstr "Ticket desbloqueado"
+
+#: views/staff.py:935
 msgid "Ticket placed on hold"
 msgstr "Ticket bloqueado"
 
-#: views/staff.py:1001
+#: views/staff.py:936
+msgid "Ticket has been blocked"
+msgstr "Ticket bloqueado"
+
+#: views/staff.py:1005
 msgid "Jan"
 msgstr "Ene"
 
-#: views/staff.py:1002
+#: views/staff.py:1006
 msgid "Feb"
 msgstr "Feb"
 
-#: views/staff.py:1003
+#: views/staff.py:1007
 msgid "Mar"
 msgstr "Mar"
 
-#: views/staff.py:1004
+#: views/staff.py:1008
 msgid "Apr"
 msgstr "Abr"
 
-#: views/staff.py:1005
+#: views/staff.py:1009
 msgid "May"
 msgstr "May"
 
-#: views/staff.py:1006
+#: views/staff.py:1010
 msgid "Jun"
 msgstr "Jun"
 
-#: views/staff.py:1007
+#: views/staff.py:1011
 msgid "Jul"
 msgstr "Jul"
 
-#: views/staff.py:1008
+#: views/staff.py:1012
 msgid "Aug"
 msgstr "Ago"
 
-#: views/staff.py:1009
+#: views/staff.py:1013
 msgid "Sep"
 msgstr "Sep"
 
-#: views/staff.py:1010
+#: views/staff.py:1014
 msgid "Oct"
 msgstr "Oct"
 
-#: views/staff.py:1011
+#: views/staff.py:1015
 msgid "Nov"
 msgstr "Nov"
 
-#: views/staff.py:1012
+#: views/staff.py:1016
 msgid "Dec"
 msgstr "Dic"
 
-#: views/staff.py:1038
+#: views/staff.py:1042
 msgid "User by Priority"
 msgstr "Usuario por Prioridad"
 
-#: views/staff.py:1044
+#: views/staff.py:1048
 msgid "User by Queue"
 msgstr "Usuario por Cola"
 
-#: views/staff.py:1050
+#: views/staff.py:1054
 msgid "User by Status"
 msgstr "Usuario por Estatus"
 
-#: views/staff.py:1056
+#: views/staff.py:1060
 msgid "User by Month"
 msgstr "Usuario por Mes"
 
-#: views/staff.py:1062
+#: views/staff.py:1066
 msgid "Queue by Priority"
 msgstr "Cola por Prioridad"
 
-#: views/staff.py:1068
+#: views/staff.py:1072
 msgid "Queue by Status"
 msgstr "Cola por Estatus"
 
-#: views/staff.py:1074
+#: views/staff.py:1078
 msgid "Queue by Month"
 msgstr "Cola por Mes"
 
