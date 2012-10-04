@@ -101,18 +101,19 @@
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
+           {% if messages %}
+              <div id="messages">
+                 <ul class="messages">
+                 {% for message in messages %}
+                    <li>{{ message }}</li>
+                 {% endfor %}
+                 </ul>
+              </div>
+           {% endif %}
+
            <div class="row-fluid">
             <div class="span12">
-                {% if messages %}
-                  <div id="messages">
-                     <ul class="messages">
-                     {% for message in messages %}
-                        <li>{{ message }}</li>
-                     {% endfor %}
-                     </ul>
-                  </div>
-                {% endif %}
-              {% block helpdesk_body %}{% endblock %}
+               {% block helpdesk_body %}{% endblock %}
            </div><!--/span-->
          </div><!--/row-->
         </div><!--/span-->
