@@ -10,3 +10,4 @@ log/*
 *.swp
 static_collected/*
 build/*
+tags
