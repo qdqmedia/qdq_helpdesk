@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-helpdesk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-04 15:03+0200\n"
+"POT-Creation-Date: 2012-10-05 12:44+0200\n"
 "PO-Revision-Date: 2012-04-26 08:25+0000\n"
 "Last-Translator: Ross Poulton <ross@rossp.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-helpdesk/"
@@ -28,8 +28,8 @@ msgstr ""
 #: templates/helpdesk/ticket_desc_table.html:29
 #: templates/helpdesk/ticket_list.html:54
 #: templates/helpdesk/ticket_list.html:76
-#: templates/helpdesk/ticket_list.html:197 views/staff.py:1067
-#: views/staff.py:1073 views/staff.py:1079 views/staff.py:1085
+#: templates/helpdesk/ticket_list.html:197 views/staff.py:1069
+#: views/staff.py:1075 views/staff.py:1081 views/staff.py:1087
 msgid "Queue"
 msgstr "Cola"
 
@@ -66,9 +66,8 @@ msgstr ""
 
 #: forms.py:148 models.py:322 management/commands/escalate_tickets.py:149
 #: templates/helpdesk/public_view_ticket.html:21
-#: templates/helpdesk/ticket_answers.html:119
 #: templates/helpdesk/ticket_desc_table.html:50
-#: templates/helpdesk/ticket_list.html:82 views/staff.py:430
+#: templates/helpdesk/ticket_list.html:82 views/staff.py:432
 msgid "Priority"
 msgstr "Prioridad"
 
@@ -78,8 +77,7 @@ msgstr ""
 "Por favor seleccione cuidadosamente una prioridad. Si no está seguro, déjelo "
 "como está (3)."
 
-#: forms.py:153 forms.py:385 models.py:330
-#: templates/helpdesk/ticket_answers.html:129 views/staff.py:440
+#: forms.py:153 forms.py:385 models.py:330 views/staff.py:442
 msgid "Due on"
 msgstr "Fecha límite"
 
@@ -93,10 +91,9 @@ msgstr ""
 "Puedes adjuntar un archivo como documento o un pantallazo a este ticket."
 
 #: forms.py:173 templates/helpdesk/public_view_ticket.html:33
-#: templates/helpdesk/ticket_answers.html:136
 #: templates/helpdesk/ticket_desc_table.html:59
 #: templates/helpdesk/ticket_list.html:59
-#: templates/helpdesk/ticket_list.html:197 views/staff.py:451
+#: templates/helpdesk/ticket_list.html:197 views/staff.py:453
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -220,9 +217,8 @@ msgstr ""
 #: models.py:32 models.py:256 models.py:496 models.py:793 models.py:827
 #: templates/helpdesk/dashboard.html:52 templates/helpdesk/dashboard.html:79
 #: templates/helpdesk/dashboard.html:107 templates/helpdesk/dashboard.html:142
-#: templates/helpdesk/ticket_answers.html:102
 #: templates/helpdesk/ticket_list.html:73
-#: templates/helpdesk/ticket_list.html:197 views/staff.py:420
+#: templates/helpdesk/ticket_list.html:197 views/staff.py:422
 msgid "Title"
 msgstr "Título"
 
@@ -555,7 +551,7 @@ msgstr ""
 "actualizado automáticamente por management/commands/escalate_tickets.py."
 
 #: models.py:348 templates/helpdesk/ticket_desc_table.html:40
-#: views/feeds.py:91 views/feeds.py:117 views/feeds.py:169 views/staff.py:377
+#: views/feeds.py:91 views/feeds.py:117 views/feeds.py:169 views/staff.py:379
 msgid "Unassigned"
 msgstr "Sin Asignar"
 
@@ -573,7 +569,7 @@ msgstr "Ticket"
 msgid "Date"
 msgstr "Fecha"
 
-#: models.py:503 views/staff.py:391
+#: models.py:503 views/staff.py:157 views/staff.py:393
 msgid "Comment"
 msgstr "Comentario"
 
@@ -590,8 +586,8 @@ msgstr ""
 "soporte, mientras los tickets no públicos sólo pueden ser vistos por el "
 "personal de soporte."
 
-#: models.py:520 models.py:894 models.py:1087 views/staff.py:1043
-#: views/staff.py:1049 views/staff.py:1055 views/staff.py:1061
+#: models.py:520 models.py:894 models.py:1087 views/staff.py:1045
+#: views/staff.py:1051 views/staff.py:1057 views/staff.py:1063
 msgid "User"
 msgstr "Usuario"
 
@@ -1081,11 +1077,11 @@ msgstr "(Actualizado)"
 msgid "For technical support please contact:"
 msgstr ""
 
-#: templates/helpdesk/base.html:68 templates/helpdesk/navigation.html:26
+#: templates/helpdesk/base.html:75 templates/helpdesk/navigation.html:26
 msgid "Search..."
 msgstr "Buscar..."
 
-#: templates/helpdesk/base.html:68 templates/helpdesk/navigation.html:26
+#: templates/helpdesk/base.html:75 templates/helpdesk/navigation.html:26
 msgid "Enter a keyword, or a ticket number to jump straight to that ticket."
 msgstr ""
 "Teclear una palabra clave o el número de un ticket para saltar directamente "
@@ -1411,27 +1407,15 @@ msgstr "Editar seguimiento"
 msgid "Edit FollowUp"
 msgstr "Editar seguimiento"
 
-#: templates/helpdesk/followup_edit.html:13
-msgid "Reassign ticket:"
-msgstr "Reasignar ticket:"
-
-#: templates/helpdesk/followup_edit.html:19
-msgid "Title:"
-msgstr "Título:"
-
-#: templates/helpdesk/followup_edit.html:25
+#: templates/helpdesk/followup_edit.html:14
 msgid "Comment:"
 msgstr "Comentario:"
 
-#: templates/helpdesk/followup_edit.html:31
+#: templates/helpdesk/followup_edit.html:20
 msgid "Public:"
 msgstr "Público:"
 
-#: templates/helpdesk/followup_edit.html:37
-msgid "New status:"
-msgstr "Nuevo Estado:"
-
-#: templates/helpdesk/followup_edit.html:42
+#: templates/helpdesk/followup_edit.html:25
 msgid "Update Ticket"
 msgstr "Actualizar Ticket"
 
@@ -1728,7 +1712,7 @@ msgstr "por Mes"
 msgid "Reports By Queue"
 msgstr "Informes por Cola"
 
-#: templates/helpdesk/report_index.html:27 views/staff.py:1084
+#: templates/helpdesk/report_index.html:27 views/staff.py:1086
 msgid "Days until ticket closed by Month"
 msgstr "Días hasta que el ticket esté cerrado por mes"
 
@@ -1857,12 +1841,12 @@ msgid "View Ticket Details"
 msgstr "Ver detalles del Ticket"
 
 #: templates/helpdesk/ticket.html:13
-#: templates/helpdesk/ticket_answers.html:149
+#: templates/helpdesk/ticket_answers.html:102
 msgid "Attach a File"
 msgstr "Adjuntar un fichero"
 
 #: templates/helpdesk/ticket.html:13
-#: templates/helpdesk/ticket_answers.html:151
+#: templates/helpdesk/ticket_answers.html:104
 msgid "Add Another File"
 msgstr "Añadir otro fichero"
 
@@ -1891,25 +1875,10 @@ msgstr ""
 "dependen de él estén resueltos."
 
 #: templates/helpdesk/ticket_answers.html:98
-msgid "Change Further Details &raquo;"
-msgstr "Cambiar otras propiedades &raquo;"
-
-#: templates/helpdesk/ticket_answers.html:108
-#: templates/helpdesk/ticket_list.html:53
-#: templates/helpdesk/ticket_list.html:85
-#: templates/helpdesk/ticket_list.html:197
-msgid "Owner"
-msgstr "Propietario"
-
-#: templates/helpdesk/ticket_answers.html:111
-msgid "Unassign"
-msgstr "Sin asignar"
-
-#: templates/helpdesk/ticket_answers.html:145
 msgid "Attach File(s) &raquo;"
 msgstr "Adjuntar Fichero(s) &raquo;"
 
-#: templates/helpdesk/ticket_answers.html:156
+#: templates/helpdesk/ticket_answers.html:109
 msgid "Save ticket"
 msgstr "Guardar Ticket"
 
@@ -2115,6 +2084,12 @@ msgstr "Cambiar esta consulta"
 #: templates/helpdesk/ticket_list.html:67
 msgid "Sorting"
 msgstr "Ordernar"
+
+#: templates/helpdesk/ticket_list.html:53
+#: templates/helpdesk/ticket_list.html:85
+#: templates/helpdesk/ticket_list.html:197
+msgid "Owner"
+msgstr "Propietario"
 
 #: templates/helpdesk/ticket_list.html:56
 #: templates/helpdesk/ticket_list.html:135
@@ -2401,37 +2376,41 @@ msgstr ""
 msgid "Submitter accepted resolution and closed ticket"
 msgstr "El solicitante acepto la solución y cerró el ticket."
 
-#: views/staff.py:235
+#: views/staff.py:162
+msgid "Followup comment saved"
+msgstr "Comentario guardado"
+
+#: views/staff.py:237
 msgid "Accepted resolution and closed ticket"
 msgstr "Solución aceptada y ticket cerrado."
 
-#: views/staff.py:370
+#: views/staff.py:372
 #, python-format
 msgid "Assigned to %(username)s"
 msgstr "Asignado a %(username)s"
 
-#: views/staff.py:393
+#: views/staff.py:395
 msgid "Updated"
 msgstr "Actualizado"
 
-#: views/staff.py:546
+#: views/staff.py:548
 msgid "Ticket has been updated"
 msgstr "Ticket guardado"
 
-#: views/staff.py:584
+#: views/staff.py:586
 #, python-format
 msgid "Assigned to %(username)s in bulk update"
 msgstr "Asignado a %(username)s en actualización masiva"
 
-#: views/staff.py:589
+#: views/staff.py:591
 msgid "Unassigned in bulk update"
 msgstr "Sin asignar en actualización masiva"
 
-#: views/staff.py:594 views/staff.py:599
+#: views/staff.py:596 views/staff.py:601
 msgid "Closed in bulk update"
 msgstr "Cerrado en actualización masiva"
 
-#: views/staff.py:820
+#: views/staff.py:822
 msgid ""
 "<p><strong>Note:</strong> Your keyword search is case sensitive because of "
 "your database. This means the search will <strong>not</strong> be accurate. "
@@ -2447,105 +2426,120 @@ msgstr ""
 "docs.djangoproject.com/en/dev/ref/databases/#sqlite-string-matching\">Django "
 "Documentation on string matching in SQLite</a>."
 
-#: views/staff.py:862
+#: views/staff.py:864
 msgid "Ticket has been saved"
 msgstr "Ticket guardado"
 
-#: views/staff.py:882
+#: views/staff.py:884
 msgid "Ticket has been created"
 msgstr "Ticket creado"
 
-#: views/staff.py:931
+#: views/staff.py:933
 msgid "Ticket taken off hold"
 msgstr "Ticket desbloqueado"
 
-#: views/staff.py:932
+#: views/staff.py:934
 msgid "Ticket has been unblocked"
 msgstr "Ticket desbloqueado"
 
-#: views/staff.py:935
+#: views/staff.py:937
 msgid "Ticket placed on hold"
 msgstr "Ticket bloqueado"
 
-#: views/staff.py:936
+#: views/staff.py:938
 msgid "Ticket has been blocked"
 msgstr "Ticket bloqueado"
 
-#: views/staff.py:1005
+#: views/staff.py:1007
 msgid "Jan"
 msgstr "Ene"
 
-#: views/staff.py:1006
+#: views/staff.py:1008
 msgid "Feb"
 msgstr "Feb"
 
-#: views/staff.py:1007
+#: views/staff.py:1009
 msgid "Mar"
 msgstr "Mar"
 
-#: views/staff.py:1008
+#: views/staff.py:1010
 msgid "Apr"
 msgstr "Abr"
 
-#: views/staff.py:1009
+#: views/staff.py:1011
 msgid "May"
 msgstr "May"
 
-#: views/staff.py:1010
+#: views/staff.py:1012
 msgid "Jun"
 msgstr "Jun"
 
-#: views/staff.py:1011
+#: views/staff.py:1013
 msgid "Jul"
 msgstr "Jul"
 
-#: views/staff.py:1012
+#: views/staff.py:1014
 msgid "Aug"
 msgstr "Ago"
 
-#: views/staff.py:1013
+#: views/staff.py:1015
 msgid "Sep"
 msgstr "Sep"
 
-#: views/staff.py:1014
+#: views/staff.py:1016
 msgid "Oct"
 msgstr "Oct"
 
-#: views/staff.py:1015
+#: views/staff.py:1017
 msgid "Nov"
 msgstr "Nov"
 
-#: views/staff.py:1016
+#: views/staff.py:1018
 msgid "Dec"
 msgstr "Dic"
 
-#: views/staff.py:1042
+#: views/staff.py:1044
 msgid "User by Priority"
 msgstr "Usuario por Prioridad"
 
-#: views/staff.py:1048
+#: views/staff.py:1050
 msgid "User by Queue"
 msgstr "Usuario por Cola"
 
-#: views/staff.py:1054
+#: views/staff.py:1056
 msgid "User by Status"
 msgstr "Usuario por Estatus"
 
-#: views/staff.py:1060
+#: views/staff.py:1062
 msgid "User by Month"
 msgstr "Usuario por Mes"
 
-#: views/staff.py:1066
+#: views/staff.py:1068
 msgid "Queue by Priority"
 msgstr "Cola por Prioridad"
 
-#: views/staff.py:1072
+#: views/staff.py:1074
 msgid "Queue by Status"
 msgstr "Cola por Estatus"
 
-#: views/staff.py:1078
+#: views/staff.py:1080
 msgid "Queue by Month"
 msgstr "Cola por Mes"
+
+#~ msgid "Reassign ticket:"
+#~ msgstr "Reasignar ticket:"
+
+#~ msgid "Title:"
+#~ msgstr "Título:"
+
+#~ msgid "New status:"
+#~ msgstr "Nuevo Estado:"
+
+#~ msgid "Change Further Details &raquo;"
+#~ msgstr "Cambiar otras propiedades &raquo;"
+
+#~ msgid "Unassign"
+#~ msgstr "Sin asignar"
 
 #~ msgid "Edit Ticket"
 #~ msgstr "Editar Ticket"

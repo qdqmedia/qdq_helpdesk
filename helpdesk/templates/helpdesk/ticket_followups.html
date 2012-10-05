@@ -35,7 +35,7 @@
                     <a class="btn btn-small" href="{% url helpdesk_followup_delete ticket.id followup.id %}" title="Borrar"><i class="icon-remove"></i></a>
                 {% endif %}
 
-                {{ followup.title }} <span class='byline'>{% if followup.user %}por {{ followup.user }}{% endif %} <span title='{{ followup.date|date:"r" }}'> hace {{ followup.date|timesince }}</span>{% if not followup.public %} <span class='private'>({% trans "Private" %})</span>{% endif %}</span>
+                <b>{{ followup.title }} </b><span class='byline'>{% if followup.user %}por <em>{{ followup.user }}</em>{% endif %} <span title='{{ followup.date|date:"r" }}'> hace {{ followup.date|timesince }}</span>{% if not followup.public %} <span class='private'>({% trans "Private" %})</span>{% endif %}</span>
            </li>
 
         {% endif %}

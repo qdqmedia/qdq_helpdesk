@@ -8,19 +8,8 @@
 
 <h3>{% trans "Edit FollowUp" %}</h3>
 <form action="." method="POST" name="edit_followup_form" class="form-horizontal">
-    {{ form.non_field_errors }}
-    <div class="control-group">
-        <label class="control-label" for="id_ticket">{% trans "Reassign ticket:" %}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
-        <div class="controls">
-            {{ form.ticket }}
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="id_title">{% trans "Title:" %}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
-        <div class="controls">
-            {{ form.title }}
-        </div>
-    </div>
+{{ form.ticket }}
+{{ form.errors }}
      <div class="control-group">
         <label class="control-label" for="id_comment">{% trans "Comment:"%}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
         <div class="controls">
@@ -33,13 +22,8 @@
             {{ form.public }}
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="id_new_status">{% trans "New status:"%}{% if field.field.required %}<span class="red">*</span>{% endif %}</label>
-        <div class="controls">
-            {{ form.new_status }}
-        </div>
-    </div>
-    <button class="btn btn-success btn-small" type="submit">{% trans "Update Ticket" %}</button>
+   <button class="btn btn-success btn-small" type="submit">{% trans "Update Ticket" %}</button>
+<input type="hidden" value="{{ form.ticket.id }}" >
 {% csrf_token %}
 </form>
 <script type="text/javascript">

@@ -142,7 +142,33 @@ def followup_edit(request, ticket_id, followup_id):
     "Edit followup options with an ability to change the ticket."
     followup = get_object_or_404(FollowUp, id=followup_id)
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    if request.method == 'GET':
+    ticketcc_string, SHOW_SUBSCRIBE = return_ticketccstring_and_show_subscribe(request.user, ticket)
+    if request.method == 'POST':
+        form = EditFollowUpForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data['comment']
+            public = form.cleaned_data['public']
+            #will save previous date
+            old_date = followup.date
+            new_followup = FollowUp(date=old_date,
+                                    ticket=ticket,
+                                    comment=comment,
+                                    public=public,
+                                    title=_('Comment'))
+            # keep old user if one did exist before.
+            if followup.user:
+                new_followup.user = followup.user
+            new_followup.save()
+            messages.add_message(request, messages.INFO, _('Followup comment saved'))
+            # get list of old attachments & link them to new_followup
+            attachments = Attachment.objects.filter(followup = followup)
+            for attachment in attachments:
+                attachment.followup = new_followup
+                attachment.save()
+            # delete old followup
+            followup.delete()
+            return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
+    else:
         form = EditFollowUpForm(initial=
                                      {'title': escape(followup.title),
                                       'ticket': followup.ticket,
@@ -151,38 +177,14 @@ def followup_edit(request, ticket_id, followup_id):
                                       'new_status': followup.new_status,
                                       })
 
-        ticketcc_string, SHOW_SUBSCRIBE = return_ticketccstring_and_show_subscribe(request.user, ticket)
+    return render_to_response('helpdesk/followup_edit.html',
+        RequestContext(request, {
+            'followup': followup,
+            'ticket': ticket,
+            'form': form,
+            'ticketcc_string': ticketcc_string,
+    }))
 
-        return render_to_response('helpdesk/followup_edit.html',
-            RequestContext(request, {
-                'followup': followup,
-                'ticket': ticket,
-                'form': form,
-                'ticketcc_string': ticketcc_string,
-        }))
-    elif request.method == 'POST':
-        form = EditFollowUpForm(request.POST)
-        if form.is_valid():
-            title = form.cleaned_data['title']
-            _ticket = form.cleaned_data['ticket']
-            comment = form.cleaned_data['comment']
-            public = form.cleaned_data['public']
-            new_status = form.cleaned_data['new_status']
-            #will save previous date
-            old_date = followup.date
-            new_followup = FollowUp(title=title, date=old_date, ticket=_ticket, comment=comment, public=public, new_status=new_status, )
-            # keep old user if one did exist before.
-            if followup.user:
-                new_followup.user = followup.user
-            new_followup.save()
-            # get list of old attachments & link them to new_followup
-            attachments = Attachment.objects.filter(followup = followup)
-            for attachment in attachments:
-                attachment.followup = new_followup
-                attachment.save()
-            # delete old followup
-            followup.delete()
-        return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket.id]))
 
 @only_staff_member
 def followup_delete(request, ticket_id, followup_id):
@@ -929,9 +931,11 @@ def hold_ticket(request, ticket_id, unhold=False):
     if unhold:
         ticket.on_hold = False
         title = _('Ticket taken off hold')
+        save_msg = _('Ticket has been unblocked')
     else:
         ticket.on_hold = True
         title = _('Ticket placed on hold')
+        save_msg = _('Ticket has been blocked')
 
     f = FollowUp(
         ticket = ticket,
@@ -943,6 +947,7 @@ def hold_ticket(request, ticket_id, unhold=False):
     f.save()
 
     ticket.save()
+    messages.add_message(request, messages.INFO, save_msg)
 
     return HttpResponseRedirect(ticket.get_absolute_url())
 
