@@ -122,6 +122,7 @@ def dashboard(request):
             'all_tickets_reported_by_current_user': all_tickets_reported_by_current_user,
             'dash_tickets': dash_tickets,
             'basic_ticket_stats': basic_ticket_stats,
+            'm_dashboard': True,
         }))
 
 @only_staff_member
@@ -805,12 +806,11 @@ def ticket_list(request):
         if tags:
             ticket_qs = TaggedItem.objects.get_by_model(ticket_qs, tags)
             query_params['tags'] = tags
-
     ticket_paginator = paginator.Paginator(ticket_qs, request.user.usersettings.settings.get('tickets_per_page') or 20)
     try:
         page = int(request.GET.get('page', '1'))
     except ValueError:
-         page = 1
+        page = 1
 
     try:
         tickets = ticket_paginator.page(page)
@@ -851,7 +851,8 @@ def ticket_list(request):
             from_saved_query=from_saved_query,
             saved_query=saved_query,
             search_message=search_message,
-            tags_enabled=HAS_TAG_SUPPORT
+            tags_enabled=HAS_TAG_SUPPORT,
+            m_tickets = True,
         )))
 
 @only_staff_member
@@ -904,6 +905,7 @@ def create_ticket(request):
         RequestContext(request, {
             'form': form,
             'tags_enabled': HAS_TAG_SUPPORT,
+            'm_new_ticket': True,
         }))
 
 @only_staff_member
@@ -971,6 +973,7 @@ def report_index(request):
         RequestContext(request, {
             'number_tickets': number_tickets,
             'saved_query': saved_query,
+            'm_reports_stats': True,
         }))
 
 

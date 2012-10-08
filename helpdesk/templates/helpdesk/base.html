@@ -93,10 +93,10 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">MENÚ</li>
-              <li class="active"><a href="{% url 'helpdesk_dashboard' %}">Dashboard</a></li>
-              <li><a href="{% url 'helpdesk_submit' %}">Nuevo Ticket</a></li>
-              <li><a href="{% url 'helpdesk_list' %}">Tickets</a></li>
-              <li><a href="{% url 'helpdesk_report_index' %}">Informes y Estadísticas</a></li>
+              <li {% if m_dashboard %}class="active"{% endif %}><a href="{% url 'helpdesk_dashboard' %}">Dashboard</a></li>
+              <li {% if m_new_ticket%}class="active"{% endif %}><a href="{% url 'helpdesk_submit' %}">Nuevo Ticket</a></li>
+              <li {% if m_tickets %}class="active"{% endif %}><a href="{% url 'helpdesk_list' %}">Tickets</a></li>
+              <li {% if m_reports_stats %}class="active"{% endif %}><a href="{% url 'helpdesk_report_index' %}">Informes y Estadísticas</a></li>
            </ul>
           </div><!--/.well -->
         </div><!--/span-->

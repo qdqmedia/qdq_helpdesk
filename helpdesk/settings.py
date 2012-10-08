@@ -25,7 +25,7 @@ if type(DEFAULT_USER_SETTINGS) != type(dict()):
             'email_on_ticket_change': True,
             'login_view_ticketlist': True,
             'email_on_ticket_apichange': True,
-            'tickets_per_page': 25
+            'tickets_per_page': 15,
             }
 
 

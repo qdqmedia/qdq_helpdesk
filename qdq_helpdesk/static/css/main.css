@@ -41,3 +41,18 @@ div#button-tickets {
     margin-top: 15px;
     text-align: right;
 }
+
+[id^="filterBox"] {
+    border-top: 1px solid;
+    background-color: #EEEEEE;
+}
+
+[id^="filterBox"] div.control-group {
+    padding-top: 7px;
+}
+
+button.btn-close {
+    margin: 0px 7px 0px 0px;
+    padding: 1px 2px 1px 2px;
+    border: 1px solid;
+}
