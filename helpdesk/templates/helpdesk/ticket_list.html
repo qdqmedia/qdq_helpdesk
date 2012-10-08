@@ -246,7 +246,7 @@ $(document).ready(function() {
                 <div class="controls">
                     <select name='saved_query' id='id_query_selector'>
                     {% for q in user_saved_queries %}
-                        <option value='{{ q.id }}'>{{ q.title }}{% if q.shared %} (Shared{% ifnotequal user q.user %} by {{ q.user.username }}{% endifnotequal %}){% endif %}</option>
+                        <option value='{{ q.id }}'>{{ q.title }}{% if q.shared %} ({% trans 'Shared' %}{% ifnotequal user q.user %} by {{ q.user.username }}{% endifnotequal %}){% endif %}</option>
                     {% endfor %}
                     </select>
                 </div>
