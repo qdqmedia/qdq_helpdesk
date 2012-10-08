@@ -1319,6 +1319,7 @@ def attachment_del(request, ticket_id, attachment_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     attachment = get_object_or_404(Attachment, id=attachment_id)
     attachment.delete()
+    messages.add_message(request, messages.INFO, _('Attached file was deleted'))
     return HttpResponseRedirect(reverse('helpdesk_view', args=[ticket_id]))
 
 def calc_average_nbr_days_until_ticket_resolved(Tickets):

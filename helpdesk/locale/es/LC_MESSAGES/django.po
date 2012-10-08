@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: django-helpdesk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-05 12:44+0200\n"
+"POT-Creation-Date: 2012-10-08 11:31+0200\n"
 "PO-Revision-Date: 2012-04-26 08:25+0000\n"
 "Last-Translator: Ross Poulton <ross@rossp.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/django-helpdesk/"
@@ -417,35 +417,22 @@ msgid "How often do you wish to check this mailbox? (in Minutes)"
 msgstr "¿Con que frecuencia desea revisar el buzón de e-mail? (En Minutos)"
 
 #: models.py:240 templates/helpdesk/dashboard.html:9
-#: templates/helpdesk/ticket_answers.html:40
 msgid "Open"
 msgstr "Abierto"
 
-#: models.py:241 templates/helpdesk/ticket_answers.html:54
-#: templates/helpdesk/ticket_answers.html:57
-#: templates/helpdesk/ticket_answers.html:68
-#: templates/helpdesk/ticket_answers.html:79
-#: templates/helpdesk/ticket_answers.html:87
+#: models.py:241
 msgid "Reopened"
 msgstr "Reabierto"
 
 #: models.py:242 templates/helpdesk/dashboard.html:10
-#: templates/helpdesk/ticket_answers.html:43
-#: templates/helpdesk/ticket_answers.html:71
 msgid "Resolved"
 msgstr "Resuelto"
 
 #: models.py:243 templates/helpdesk/dashboard.html:11
-#: templates/helpdesk/ticket_answers.html:46
-#: templates/helpdesk/ticket_answers.html:60
-#: templates/helpdesk/ticket_answers.html:74
-#: templates/helpdesk/ticket_answers.html:82
 msgid "Closed"
 msgstr "Cerrado"
 
-#: models.py:244 templates/helpdesk/ticket_answers.html:49
-#: templates/helpdesk/ticket_answers.html:63
-#: templates/helpdesk/ticket_answers.html:90
+#: models.py:244
 msgid "Duplicate"
 msgstr "Duplicado"
 
@@ -591,7 +578,7 @@ msgstr ""
 msgid "User"
 msgstr "Usuario"
 
-#: models.py:524 templates/helpdesk/ticket_answers.html:35
+#: models.py:524 templates/helpdesk/ticket_answers.html:36
 msgid "New Status"
 msgstr "Nuevo Estado"
 
@@ -1840,33 +1827,31 @@ msgstr ""
 msgid "View Ticket Details"
 msgstr "Ver detalles del Ticket"
 
-#: templates/helpdesk/ticket.html:13
-#: templates/helpdesk/ticket_answers.html:102
+#: templates/helpdesk/ticket.html:13 templates/helpdesk/ticket_answers.html:48
 msgid "Attach a File"
 msgstr "Adjuntar un fichero"
 
-#: templates/helpdesk/ticket.html:13
-#: templates/helpdesk/ticket_answers.html:104
+#: templates/helpdesk/ticket.html:13 templates/helpdesk/ticket_answers.html:50
 msgid "Add Another File"
 msgstr "Añadir otro fichero"
 
-#: templates/helpdesk/ticket_answers.html:4
+#: templates/helpdesk/ticket_answers.html:5
 msgid "Respond to this ticket"
 msgstr "Responder a este ticket"
 
-#: templates/helpdesk/ticket_answers.html:9
+#: templates/helpdesk/ticket_answers.html:10
 msgid "Use a Pre-set Reply"
 msgstr "Utilizar una respuesta prefijada"
 
-#: templates/helpdesk/ticket_answers.html:21
+#: templates/helpdesk/ticket_answers.html:22
 msgid "Is this update public?"
 msgstr "¿Es esta actualización pública?"
 
-#: templates/helpdesk/ticket_answers.html:29
+#: templates/helpdesk/ticket_answers.html:30
 msgid "Comment / Resolution"
 msgstr "Comentario / Solución"
 
-#: templates/helpdesk/ticket_answers.html:36
+#: templates/helpdesk/ticket_answers.html:37
 msgid ""
 "This ticket cannot be resolved or closed until the tickets it depends on are "
 "resolved."
@@ -1874,11 +1859,11 @@ msgstr ""
 "Este ticket no puede ser resuelto o cerrado hasta que los tickets que "
 "dependen de él estén resueltos."
 
-#: templates/helpdesk/ticket_answers.html:98
+#: templates/helpdesk/ticket_answers.html:44
 msgid "Attach File(s) &raquo;"
 msgstr "Adjuntar Fichero(s) &raquo;"
 
-#: templates/helpdesk/ticket_answers.html:109
+#: templates/helpdesk/ticket_answers.html:55
 msgid "Save ticket"
 msgstr "Guardar Ticket"
 
@@ -2525,6 +2510,10 @@ msgstr "Cola por Estatus"
 #: views/staff.py:1080
 msgid "Queue by Month"
 msgstr "Cola por Mes"
+
+#: views/staff.py:1322
+msgid "Attached file was deleted"
+msgstr "Fichero adjunto borrado"
 
 #~ msgid "Reassign ticket:"
 #~ msgstr "Reasignar ticket:"
